@@ -14,13 +14,17 @@ import java.awt.image.BufferStrategy;
 import javax.swing.JLabel;
 import javax.swing.border.LineBorder;
 
+import juego.Display;
+import juego.Game;
+import juego.elementos.Jugador;
 import juego.manager.BotonManager;
 import juego.manager.Recursos;
-import juego.vista.Jugador;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.BoxLayout;
+import javax.swing.UIManager;
+import java.awt.Font;
 
 public class PantallaJuego extends JPanel{
 
@@ -32,17 +36,23 @@ public class PantallaJuego extends JPanel{
 	private BotonManager bm;
 	private int ancho;
 	private int alto;
-	private Jugador jugador;
+	private Canvas canvas;
+	private Game juego;
 	
-	public PantallaJuego() {
+	public PantallaJuego(Game juego) {
 		super();
+		this.juego = juego;
 		bm = new BotonManager();
 		init(); 
 	}
 
 	public void init() {
-		jugador = new Jugador (this,this.getWidth()/2,this.getHeight()/2);
+	
 		setLayout(new BorderLayout(0, 0));
+		canvas = new Canvas();
+		canvas.setSize(700, 370);
+		canvas.setBackground(Color.BLACK);
+		add(canvas,BorderLayout.CENTER);
 		JPanel panel = new JPanel();
 		panel.setForeground(Color.GRAY);
 		add(panel);
@@ -55,30 +65,40 @@ public class PantallaJuego extends JPanel{
 		panel.add(panelFlechas, BorderLayout.SOUTH);
 		
 		btnArriba = new JButton("");
+		btnArriba.setBackground(new Color(51, 51, 51));
 		btnArriba.setIcon(new ImageIcon(PantallaJuego.class.getResource("/Imagenes/flechaArriba.png")));
 		btnArriba.setActionCommand("up");
 		btnArriba.addActionListener(bm);
 		
-		JLabel lblNewLabel_1 = new JLabel("");
-		panelFlechas.add(lblNewLabel_1);
+		JLabel lblNewLabel = new JLabel("LIVES : ");
+		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		lblNewLabel.setForeground(Color.YELLOW);
+		lblNewLabel.setBackground(Color.BLACK);
+		panelFlechas.add(lblNewLabel);
 		panelFlechas.add(btnArriba);
 		
 		btnIzquierda = new JButton("");
+		btnIzquierda.setBackground(new Color(51, 51, 51));
 		btnIzquierda.setIcon(new ImageIcon(PantallaJuego.class.getResource("/Imagenes/flechaIzquierda.png")));
 		btnIzquierda.setActionCommand("left");
 		btnIzquierda.addActionListener(bm);
 		
-		JLabel lblNewLabel = new JLabel("");
-		panelFlechas.add(lblNewLabel);
+		JLabel lblNewLabel_1 = new JLabel("SCORE : ");
+		lblNewLabel_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		lblNewLabel_1.setForeground(Color.YELLOW);
+		lblNewLabel_1.setBackground(Color.BLACK);
+		panelFlechas.add(lblNewLabel_1);
 		panelFlechas.add(btnIzquierda);
 		
 		btnAbajo = new JButton("");
+		btnAbajo.setBackground(new Color(51, 51, 51));
 		btnAbajo.setIcon(new ImageIcon(PantallaJuego.class.getResource("/Imagenes/flechaAbajo.png")));
 		btnAbajo.setActionCommand("down");
 		btnAbajo.addActionListener(bm);
 		panelFlechas.add(btnAbajo);
 		
 		btnDerecha = new JButton("");
+		btnDerecha.setBackground(new Color(51, 51, 51));
 		btnDerecha.setIcon(new ImageIcon(PantallaJuego.class.getResource("/Imagenes/flechaDerecha.png")));
 		btnDerecha.setActionCommand("right");
 		btnDerecha.addActionListener(bm);
@@ -89,6 +109,9 @@ public class PantallaJuego extends JPanel{
 		panelJuego.setSize(200, 200);
 		panelJuego.setBackground(Color.BLACK);
 		panel.add(panelJuego);
+		
+		//addKeyListener
+		setFocusable(true);
 
 	}
 
@@ -103,6 +126,14 @@ public class PantallaJuego extends JPanel{
 	
 	public int getAlto() {
 		return alto;
+	}
+	
+	public Canvas getCanvas() {
+		return canvas;
+	}
+
+	public void setCanvas(Canvas canvas) {
+		this.canvas = canvas;
 	}
 	
 }
