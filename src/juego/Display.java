@@ -16,9 +16,9 @@ import juego.estado.Juego;
 import juego.estado.Menu;
 import juego.estado.Principal;
 import juego.manager.StateManager;
-import juego.vista.panel.PantallaJuego;
-import juego.vista.panel.PantallaMenu;
-import juego.vista.panel.PantallaPrincipal;
+import juego.paneles.PantallaJuego;
+import juego.paneles.PantallaMenu;
+import juego.paneles.PantallaPrincipal;
 
 import java.awt.CardLayout;
 import java.awt.Color;

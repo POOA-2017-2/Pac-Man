@@ -5,24 +5,26 @@ import java.awt.Graphics;
 
 import juego.Display;
 import juego.Game;
-import juego.vista.panel.PantallaMenu;
-import juego.vista.panel.PantallaPrincipal;
+import juego.paneles.PantallaMenu;
+import juego.paneles.PantallaPrincipal;
 
 public class Principal extends Estado{
 
 	private PantallaPrincipal pnlPrincipal;
 	private Game juego;
+	private Display ventana;
 	
-	public Principal(Game juego) {
+	public Principal(Game juego,Display ventana) {
 		super(EstadoJuego.INICIO);
 		this.juego=juego;
+		this.ventana = ventana;
 		init();
 		
 	}
 
 	@Override
 	public void init() {
-		pnlPrincipal=new PantallaPrincipal(juego);
+		pnlPrincipal=new PantallaPrincipal(juego,ventana);
 		juego.getVentana().getPnlVista().add(pnlPrincipal, "Principal");
 		
 	}

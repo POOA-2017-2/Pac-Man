@@ -3,7 +3,7 @@ import java.awt.CardLayout;
 import java.awt.Graphics;
 import juego.Game;
 import juego.estado.EstadoJuego;
-import juego.vista.panel.PantallaMenu;
+import juego.paneles.PantallaMenu;
 
 public class Menu extends Estado{
 

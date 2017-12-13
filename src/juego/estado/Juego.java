@@ -7,7 +7,7 @@ import juego.Game;
 import juego.elementos.Escenario;
 import juego.elementos.Jugador;
 import juego.manager.Recursos;
-import juego.vista.panel.PantallaJuego;
+import juego.paneles.PantallaJuego;
 
 public class Juego extends Estado{
 

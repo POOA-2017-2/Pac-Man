@@ -31,10 +31,10 @@ public class Game implements Runnable{
 		ventana=new Display(ancho, alto, titulo);
 		
 
-		Principal p = new Principal(this); 
+		Principal p = new Principal(this,ventana); 
 		Menu m=new Menu(this);
 		Juego j=new Juego(this);
-		AcercaDe ad = new AcercaDe("PACMAN",this);
+		AcercaDe ad = new AcercaDe("PROYECTO FINAL: PACMAN",this);
 		Reglas r = new Reglas(this);
 		//PantallaPrincipal inicio = new PantallaPrincipal();
 		StateManager.getInstance().addEstado(p);
@@ -104,7 +104,7 @@ public class Game implements Runnable{
 			
 			// testeo
 			if(time>=1000000000){
-				System.out.println("Frames por segundo: "+ticks);
+		//		System.out.println("Frames por segundo: "+ticks);
 				ticks=0;
 				time=0;
 			}

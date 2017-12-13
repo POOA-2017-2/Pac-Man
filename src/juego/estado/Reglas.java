@@ -4,8 +4,8 @@ import java.awt.CardLayout;
 import java.awt.Graphics;
 
 import juego.Game;
-import juego.vista.panel.PantallaAbout;
-import juego.vista.panel.PantallaReglas;
+import juego.paneles.PantallaAbout;
+import juego.paneles.PantallaReglas;
 
 public class Reglas extends Estado{
 
