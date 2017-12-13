@@ -1,13 +1,22 @@
 package juego;
 
+import java.awt.EventQueue;
+
 import juego.manager.Recursos;
-import juego.vista.Display;
 
 public class Pacman {
 	private static nivel Nivel;
 	public static void main(String args[]) {
-		Display ventana = new Display (700,500,"JUEGO");
-		Recursos.init();
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				Game ventana = new Game (700,500,"JUEGO");
+				ventana.start();
+				//manager.loop();
+				
+			}
+		});
+
 	}
 
 }
