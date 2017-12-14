@@ -53,13 +53,15 @@ public class PantallaPrincipal extends JPanel {
 		panel.setLayout(new GridLayout(2, 1, 0, 0));
 		
 		btnNuevo = new MiBoton("EXIT",Color.RED);
+		btnNuevo.setForeground(Color.BLACK);
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
-				display.setVisible(false);
+				System.exit(0);
 			}
 		});
 		
 		btnNewButton = new MiBoton("START", Color.BLUE.brighter());
+		btnNewButton.setForeground(Color.BLACK);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StateManager.getInstance().setCurrentEstado(EstadoJuego.MENU);

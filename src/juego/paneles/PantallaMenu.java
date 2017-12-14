@@ -59,6 +59,7 @@ public class PantallaMenu extends JPanel {
 		add(lblNewLabel_1, gbc_lblNewLabel_1);
 		
 		btnNuevo = new MiBoton("UNIPLAYER",Color.YELLOW);
+		btnNuevo.setForeground(Color.BLACK);
 		btnNuevo.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StateManager.getInstance().setCurrentEstado(EstadoJuego.JUEGO);
@@ -72,6 +73,7 @@ public class PantallaMenu extends JPanel {
 		add(btnNuevo, gbc_btnNuevo);
 		
 		btnNuevoM = new MiBoton("MULTIPLAYER",Color.ORANGE);
+		btnNuevoM.setForeground(Color.BLACK);
 		GridBagConstraints gbc_btnNuevoM = new GridBagConstraints();
 		gbc_btnNuevoM.fill = GridBagConstraints.BOTH;
 		gbc_btnNuevoM.insets = new Insets(0, 0, 5, 0);
@@ -80,6 +82,7 @@ public class PantallaMenu extends JPanel {
 		add(btnNuevoM, gbc_btnNuevoM);
 		
 		btnSalir = new MiBoton("SALIR",Color.RED);
+		btnSalir.setForeground(Color.BLACK);
 		btnSalir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				StateManager.getInstance().setCurrentEstado(EstadoJuego.INICIO);
@@ -87,6 +90,7 @@ public class PantallaMenu extends JPanel {
 		});
 		
 		btnReglas = new MiBoton("REGLAS",Color.WHITE.darker());
+		btnReglas.setForeground(Color.BLACK);
 		btnReglas.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				StateManager.getInstance().setCurrentEstado(EstadoJuego.REGLAS);
@@ -94,6 +98,7 @@ public class PantallaMenu extends JPanel {
 		});
 		
 		btnAcercaDe = new MiBoton("ACERCA DE",Color.BLUE);
+		btnAcercaDe.setForeground(Color.BLACK);
 		btnAcercaDe.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				StateManager.getInstance().setCurrentEstado(EstadoJuego.ACERCADE);

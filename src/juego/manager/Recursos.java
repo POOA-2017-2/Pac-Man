@@ -2,10 +2,10 @@ package juego.manager;
 
 import java.awt.image.BufferedImage;
 
+import juego.elementos.Escenario;
+
 public class Recursos {
 
-	public static BufferedImage fondo;
-	public static BufferedImage piso;
 	public static BufferedImage jugador;
 	public static BufferedImage [] jugadorLeft;
 	public static BufferedImage [] jugadorRight;
@@ -13,10 +13,7 @@ public class Recursos {
 	public static BufferedImage [] jugadorDown;
 	public static BufferedImage []enemigo;
 	public static void init() {
-	//	fondo = ImageManager.cargaImagen("/imagen/country-platform-back.png");
-	//	piso = ImageManager.cargaImagen("/imagen/country-platform-tiles-example.png");
 		SpriteManager sm = new SpriteManager("/Imagenes/pacmanSprites.png");
-		SpriteManager ghost = new SpriteManager("/Imagenes/spritesGhost.png");
 		jugador = sm.subImagen(0, 374, 33, 34);
 		jugadorLeft = new BufferedImage[4];
 		jugadorRight = new BufferedImage[4];

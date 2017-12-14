@@ -1,8 +1,7 @@
 package juego;
 
 import java.awt.EventQueue;
-
-import juego.manager.Recursos;
+import juego.manager.AudioManager;
 
 public class Pacman {
 	private static nivel Nivel;
@@ -12,7 +11,8 @@ public class Pacman {
 			public void run() {
 				Game ventana = new Game (700,500,"JUEGO");
 				ventana.start();
-				//manager.loop();
+		//	AudioManager manager=new AudioManager("/sounds/pacman_beginning.wav");
+		//	manager.start();
 				
 			}
 		});

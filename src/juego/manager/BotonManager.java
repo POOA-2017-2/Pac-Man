@@ -27,7 +27,6 @@ public class BotonManager implements ActionListener{
 						break;
 		case "right" :	setRight(true);
 						break;
-		
 		}
 		
 	}
@@ -52,10 +51,10 @@ public class BotonManager implements ActionListener{
 	}
 	
 	public void clearAll() {
-		left = true;
-		right = true;
-		up = true;
-		down = true;
+		left = false;
+		right = false;
+		up = false;
+		down = false;
 	}
 
 

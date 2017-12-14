@@ -36,7 +36,6 @@ public class Game implements Runnable{
 		Juego j=new Juego(this);
 		AcercaDe ad = new AcercaDe("PROYECTO FINAL: PACMAN",this);
 		Reglas r = new Reglas(this);
-		//PantallaPrincipal inicio = new PantallaPrincipal();
 		StateManager.getInstance().addEstado(p);
 		StateManager.getInstance().addEstado(m);
 		StateManager.getInstance().addEstado(j);
@@ -61,7 +60,6 @@ public class Game implements Runnable{
 		try {
 			t.join();
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
@@ -77,7 +75,7 @@ public class Game implements Runnable{
 	}
 	
 	public void run() {
-		// TODO Auto-generated method stub
+		
 		init();//<--- INICIALIZAR JUEGO
 		int fps=60;
 		double nanoPorFrame=1000000000/fps;

@@ -12,19 +12,27 @@ import java.awt.GridLayout;
 import java.awt.image.BufferStrategy;
 
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
 
 import juego.Display;
 import juego.Game;
 import juego.elementos.Jugador;
+import juego.estado.EstadoJuego;
 import juego.manager.BotonManager;
+import juego.manager.KeyManager;
+import juego.manager.MiBoton;
 import juego.manager.Recursos;
+import juego.manager.StateManager;
 
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.BoxLayout;
 import javax.swing.UIManager;
 import java.awt.Font;
+import javax.swing.SwingConstants;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class PantallaJuego extends JPanel{
 
@@ -33,21 +41,23 @@ public class PantallaJuego extends JPanel{
 	private JButton btnAbajo;
 	private JButton btnIzquierda;
 	private JButton btnDerecha;
+	private MiBoton btnSalir;
 	private BotonManager bm;
+	private KeyManager km;
 	private int ancho;
 	private int alto;
 	private Canvas canvas;
-	private Game juego;
+	private JPanel panel_1;
+	private JLabel lblScore;
 	
-	public PantallaJuego(Game juego) {
+	public PantallaJuego() {
 		super();
-		this.juego = juego;
-		bm = new BotonManager();
 		init(); 
 	}
 
 	public void init() {
-	
+
+		bm = new BotonManager();
 		setLayout(new BorderLayout(0, 0));
 		canvas = new Canvas();
 		canvas.setSize(700, 370);
@@ -70,11 +80,22 @@ public class PantallaJuego extends JPanel{
 		btnArriba.setActionCommand("up");
 		btnArriba.addActionListener(bm);
 		
+		panel_1 = new JPanel();
+		panel_1.setBackground(Color.BLACK);
+		panelFlechas.add(panel_1);
+		panel_1.setLayout(new GridLayout(0, 2, 0, 0));
+		
 		JLabel lblNewLabel = new JLabel("LIVES : ");
-		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
+		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
+		panel_1.add(lblNewLabel);
+		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
 		lblNewLabel.setForeground(Color.YELLOW);
 		lblNewLabel.setBackground(Color.BLACK);
-		panelFlechas.add(lblNewLabel);
+		
+		lblScore = new JLabel("SCORE:");
+		lblScore.setForeground(Color.YELLOW);
+		lblScore.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
+		panel_1.add(lblScore);
 		panelFlechas.add(btnArriba);
 		
 		btnIzquierda = new JButton("");
@@ -83,11 +104,17 @@ public class PantallaJuego extends JPanel{
 		btnIzquierda.setActionCommand("left");
 		btnIzquierda.addActionListener(bm);
 		
-		JLabel lblNewLabel_1 = new JLabel("SCORE : ");
-		lblNewLabel_1.setFont(new Font("Comic Sans MS", Font.BOLD, 18));
-		lblNewLabel_1.setForeground(Color.YELLOW);
-		lblNewLabel_1.setBackground(Color.BLACK);
-		panelFlechas.add(lblNewLabel_1);
+		btnSalir = new MiBoton("SALIR",Color.red);
+		btnSalir.setForeground(Color.BLACK);
+		btnSalir.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
+				int action = JOptionPane.showConfirmDialog(panelJuego, "Deseas dejar la partida?","FIN DE JUEGO",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
+				if(action == JOptionPane.YES_OPTION){
+					StateManager.getInstance().setCurrentEstado(EstadoJuego.MENU);
+				}
+			}
+		});
+		panelFlechas.add(btnSalir);
 		panelFlechas.add(btnIzquierda);
 		
 		btnAbajo = new JButton("");
@@ -109,16 +136,21 @@ public class PantallaJuego extends JPanel{
 		panelJuego.setSize(200, 200);
 		panelJuego.setBackground(Color.BLACK);
 		panel.add(panelJuego);
-		
-		//addKeyListener
-		setFocusable(true);
+
+		km = new KeyManager();
+		canvas.addKeyListener(km);
+		canvas.setFocusable(true);
+		setVisible(true);
 
 	}
 
 	public BotonManager getBm() {
 		return bm;
 	}
-
+	
+	public KeyManager getKm() {
+		return km;
+	}
 
 	public int getAncho() {
 		return ancho;

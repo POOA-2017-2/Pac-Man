@@ -1,8 +1,11 @@
 package juego.elementos;
 
 import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 
+import juego.Cell;
 import juego.estado.Juego;
 import juego.manager.Animacion;
 import juego.manager.Recursos;
@@ -19,12 +22,15 @@ public class Jugador {
 	private Animacion jugadorR;
 	private Animacion jugadorU;
 	private Animacion jugadorD;
-	private Juego juego;
+	private Juego juego; 
+	public Cell[][] cells;
+    public int livesLeft;
+    public Juego maze;
+    public int score;
+   // public PacmanGUI pacmanGUI;
 
-	public Jugador() {
-		// TODO Auto-generated constructor stub
-	}
-	public Jugador(Juego juego, int x, int y) {
+	
+	public Jugador(Juego juego, int x, int y,Juego juego2,int lives) {
 		super();
 		this.juego = juego;
 		this.x = x;
@@ -32,44 +38,66 @@ public class Jugador {
 		dx = 1;
 		dy = 1;
 		imagen = Recursos.jugador;
-		jugadorL = new Animacion(500,Recursos.jugadorLeft);
-		jugadorR = new Animacion(500,Recursos.jugadorRight);
-		jugadorU = new Animacion(500,Recursos.jugadorUp);
-		jugadorD = new Animacion(500,Recursos.jugadorDown);
+		jugadorL = new Animacion(250,Recursos.jugadorLeft);
+		jugadorR = new Animacion(250,Recursos.jugadorRight);
+		jugadorU = new Animacion(250,Recursos.jugadorUp);
+		jugadorD = new Animacion(250,Recursos.jugadorDown);
+        maze      = juego2;
+        livesLeft = lives;
+        cells     = maze.getCells();
 	}
 	
 	public void update() {
-		if(juego.getPnlJuego().getBm().isRight()) {
-			if(x<=juego.getPnlJuego().getAncho()) {
+		if(juego.getPnlJuego().getBm().isRight() || juego.getPnlJuego().getKm().isDerecha()) {
+			if(x<(juego.getJuego().getAncho()- 50)) 
+				if (isCellNavigable(y, x + dx)){
 				x+=dx;
-				stopAll();
+				jugadorL.stop();
+				jugadorU.stop();
+				jugadorD.stop();
 				jugadorR.start();
-			}
+			}//else
+			//jugadorR.stop();
 			
 		}
 			
-		else if(juego.getPnlJuego().getBm().isLeft()) {
-			if(x>=0){
+		else if(juego.getPnlJuego().getBm().isLeft() || juego.getPnlJuego().getKm().isIzquierda()) {
+			if(x>0)
+				if (isCellNavigable(y, x - dx)){
 				x-=dx;
-				stopAll();
+				jugadorU.stop();
+				jugadorR.stop();
+				jugadorD.stop();
 				jugadorL.start();
-			}
+			}else
+			jugadorL.stop();
 			
 		}
-		else if(juego.getPnlJuego().getBm().isUp()) {
-			if(y>0){
+		else if(juego.getPnlJuego().getBm().isUp() || juego.getPnlJuego().getKm().isArriba()) {
+			if(y>0)
+				if (isCellNavigable(y-dy, x)){
 				y-=dy;
-				stopAll();
+				jugadorL.stop();
+				jugadorR.stop();
+				jugadorD.stop();
 				jugadorU.start();
-			}
+			}else
+			jugadorU.stop();
 		}
-		else if(juego.getPnlJuego().getBm().isDown()) {
-			if(y<=juego.getPnlJuego().getAlto()){
+		else if(juego.getPnlJuego().getBm().isDown() || juego.getPnlJuego().getKm().isAbajo()) {
+			if(y<(juego.getJuego().getAlto() - 200))
+				if (isCellNavigable(y+dy, x)){
 				y+=dy;
-				stopAll();
+				jugadorL.stop();
+				jugadorU.stop();
+				jugadorR.stop();
 				jugadorD.start();
-			}
+			}else
+				jugadorD.stop();
 		}
+	//	eatPellet(y, x);
+
+       
 	}
 	
 	public void stopAll() {
@@ -99,4 +127,56 @@ public class Jugador {
 		}
 		return Recursos.jugador;
 	}
+	
+	
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
+	}
+
+
+
+	    public void eatPellet(int column, int row) {
+	        if (cells[column][row].getType() == 'd') {
+	            score  += 10;
+	            cells[column][row].type = 'o';
+	           // PacmanGUI.newDisp();
+	        }
+
+	        if (cells[column][row].getType() == 'p') {
+	            score += 50;
+	            cells[column][row].type = 'o';
+	         //   PacmanGUI.newDisp();
+	            maze.setEdible();
+	        }
+	    }
+
+	    /*
+	     * celda navegable
+	     *
+	     */
+	    public boolean isCellNavigable(int column, int row) {
+	        return ((cells[column][row].getType() == 'o') || (cells[column][row].getType() == 'd')
+	                || (cells[column][row].getType() == 'p'));
+	    }
+	    /*
+	     * score
+	     *
+	     */
+	    public int getScore() {
+	        return score;
+	    }
+
+	    /*
+	     * vidas
+	     *
+	     */
+	    public int getLives() {
+	        return livesLeft;
+	    }
+	    
 }

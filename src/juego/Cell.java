@@ -5,7 +5,7 @@ import java.awt.geom.Ellipse2D;
 
 public class Cell {
     final int      CELL = 20;
-    protected char type;
+    public char type;
     protected int  x, y;
 
     /*
