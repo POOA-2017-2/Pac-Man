@@ -3,6 +3,7 @@ package juego.elementos;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.awt.Toolkit;
+import java.awt.image.ImageObserver;
 import java.util.Random;
 import juego.Cell;
 import juego.estado.Juego;
@@ -19,7 +20,6 @@ public class Enemigo {
 		Cell[][]                    cells;
 	    private Image               ghostPicIcon;
 	    private int                 ghostRow, ghostCol;
-	    Maze                        maze;
 	    private Juego juego; 
 	
 
@@ -27,7 +27,6 @@ public class Enemigo {
 	        ghostRow = initialRow;
 	        ghostCol = initialColumn;
 	        this.juego     = juego;
-	        cells        = juego.getCells();
 	        ghostPicIcon = Toolkit.getDefaultToolkit().getImage(IMAGE_SOURCE + ghostGraphic);
 	    }
 
@@ -42,6 +41,7 @@ public class Enemigo {
           }
 
           // Movimiento
+		  cells = juego.getCells();
           switch (randGen.nextInt(4) + 1) {
           case (1) :
               moveCol(0);
@@ -67,11 +67,11 @@ public class Enemigo {
               break;
           }
 
-          maze.repaint();
+         // maze.repaint();
 	}
 
 	    public void render(Graphics g) {
-	        g.drawImage(ghostPicIcon, ghostRow *20, ghostCol *20, maze);
+	        g.drawImage(ghostPicIcon, ghostRow *20, ghostCol *20, juego.getPnlJuego());
 	    }
 
 	    /*

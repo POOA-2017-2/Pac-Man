@@ -23,7 +23,6 @@ public class Juego extends Estado{
 	private Game juego;
 	private Cell[][] cells;
 	private BufferStrategy bs;
-	//private Juego maze;
 	private Enemigo inky;
 	private Enemigo blinky;
 	private Enemigo pinky;
@@ -39,15 +38,16 @@ public class Juego extends Estado{
 
 	public void init() {
 		Recursos.init();
-		pnlJuego=new PantallaJuego();
+		pnlJuego=new PantallaJuego(juego);
 		juego.getVentana().getPnlVista().add(pnlJuego,"Juego");
 		
-		jugador=new Jugador(this,10,160, this, 3);
+		jugador=new Jugador(this,10,160, 3);
 		inky   = new Enemigo(ghostInitialRow, ghostInitialColumn, this, "inky.png");
 	    blinky = new Enemigo(ghostInitialRow + 3, ghostInitialColumn, this, "blinky.png");
         pinky  = new Enemigo(ghostInitialRow, ghostInitialColumn + 3, this, "pinky.png");
         clyde  = new Enemigo(ghostInitialRow + 3, ghostInitialColumn + 3, this, "clyde.png");
-        escenario = new Escenario();
+        escenario = new Escenario(this);
+        cells = escenario.getCells();
 	}
 
 	public void render(Graphics g) {
@@ -60,8 +60,8 @@ public class Juego extends Estado{
 		g=bs.getDrawGraphics();
 		g.clearRect(0, 0,juego.getAncho(), juego.getAlto());
 		// PINTAR ELEMENTOS
-		escenario.render(g);
 		jugador.render(g);
+		escenario.render(g);
 		inky.render(g);
 		blinky.render(g);
 		pinky.render(g);
@@ -83,6 +83,8 @@ public class Juego extends Estado{
 		pinky.update();
 		clyde.update();
 		checkCollision();
+		pnlJuego.setScore(getScore());
+		pnlJuego.setLives(getLives());
 		
 	}
 	

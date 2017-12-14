@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import juego.Cell;
+import juego.estado.Juego;
 
 public class Escenario {
 	
@@ -16,8 +17,18 @@ public class Escenario {
     private int	tileHeight;
     private int	tileWidth;
     private Cell[][] cells;
+    private Juego juego;
 	
-	public Escenario() {
+	public Cell[][] getCells() {
+		return cells;
+	}
+
+	public void setCells(Cell[][] cells) {
+		this.cells = cells;
+	}
+
+	public Escenario(Juego juego) {
+		this.juego = juego;
 		  createCellArray(map);
 	}
 	
@@ -82,5 +93,7 @@ public class Escenario {
 	            }
 	        }
 	 }
+
+	
 
 }

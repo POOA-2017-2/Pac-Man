@@ -9,7 +9,7 @@ public class Pacman {
 		
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
-				Game ventana = new Game (700,500,"JUEGO");
+				Game ventana = new Game (915,600,"JUEGO");
 				ventana.start();
 		//	AudioManager manager=new AudioManager("/sounds/pacman_beginning.wav");
 		//	manager.start();

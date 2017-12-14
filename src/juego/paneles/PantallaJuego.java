@@ -49,9 +49,12 @@ public class PantallaJuego extends JPanel{
 	private Canvas canvas;
 	private JPanel panel_1;
 	private JLabel lblScore;
+	private JLabel lblNewLabel;
+	private Game juego;
 	
-	public PantallaJuego() {
+	public PantallaJuego(Game juego) {
 		super();
+		this.juego = juego;
 		init(); 
 	}
 
@@ -60,7 +63,7 @@ public class PantallaJuego extends JPanel{
 		bm = new BotonManager();
 		setLayout(new BorderLayout(0, 0));
 		canvas = new Canvas();
-		canvas.setSize(700, 370);
+		canvas.setSize(juego.getAncho(), juego.getAlto()-130);
 		canvas.setBackground(Color.BLACK);
 		add(canvas,BorderLayout.CENTER);
 		JPanel panel = new JPanel();
@@ -85,7 +88,7 @@ public class PantallaJuego extends JPanel{
 		panelFlechas.add(panel_1);
 		panel_1.setLayout(new GridLayout(0, 2, 0, 0));
 		
-		JLabel lblNewLabel = new JLabel("LIVES : ");
+		lblNewLabel = new JLabel("LIVES : ");
 		lblNewLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		panel_1.add(lblNewLabel);
 		lblNewLabel.setFont(new Font("Comic Sans MS", Font.BOLD, 13));
@@ -142,6 +145,14 @@ public class PantallaJuego extends JPanel{
 		canvas.setFocusable(true);
 		setVisible(true);
 
+	}
+	
+	public void setScore(int score) {
+		lblScore.setText("SCORE: " + score);
+	}
+	
+	public void setLives(int lives) {
+		lblNewLabel.setText("LIVES: "+ lives);
 	}
 
 	public BotonManager getBm() {

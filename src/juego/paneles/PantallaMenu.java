@@ -41,9 +41,11 @@ public class PantallaMenu extends JPanel {
 		setBorder(new LineBorder(new Color(255, 215, 0), 10));
 		setBackground(new Color(0, 0, 0));
 		setForeground(new Color(0, 0, 0));
+		int altoColumna = juego.getAlto() / 4;
+		int altoCM = (int) (juego.getAlto()*0.13);
 		GridBagLayout gridBagLayout = new GridBagLayout();
-		gridBagLayout.columnWidths = new int[]{700, 0};
-		gridBagLayout.rowHeights = new int[] {100, 60, 60, 60, 60, 60, 0};
+		gridBagLayout.columnWidths = new int[]{juego.getAncho(), 0};
+		gridBagLayout.rowHeights = new int[] {altoColumna, altoCM, altoCM, altoCM, altoCM, altoCM, 0};
 		gridBagLayout.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gridBagLayout.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		setLayout(gridBagLayout);

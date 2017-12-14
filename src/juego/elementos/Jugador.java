@@ -25,12 +25,11 @@ public class Jugador {
 	private Juego juego; 
 	public Cell[][] cells;
     public int livesLeft;
-    public Juego maze;
     public int score;
    // public PacmanGUI pacmanGUI;
 
 	
-	public Jugador(Juego juego, int x, int y,Juego juego2,int lives) {
+	public Jugador(Juego juego, int x, int y,int lives) {
 		super();
 		this.juego = juego;
 		this.x = x;
@@ -42,9 +41,8 @@ public class Jugador {
 		jugadorR = new Animacion(250,Recursos.jugadorRight);
 		jugadorU = new Animacion(250,Recursos.jugadorUp);
 		jugadorD = new Animacion(250,Recursos.jugadorDown);
-        maze      = juego2;
         livesLeft = lives;
-        cells     = maze.getCells();
+        cells     = juego.getCells();
 	}
 	
 	public void update() {
@@ -151,7 +149,7 @@ public class Jugador {
 	            score += 50;
 	            cells[column][row].type = 'o';
 	         //   PacmanGUI.newDisp();
-	            maze.setEdible();
+	            juego.setEdible();
 	        }
 	    }
 
