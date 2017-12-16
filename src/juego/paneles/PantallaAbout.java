@@ -45,8 +45,8 @@ public class PantallaAbout extends JPanel{
 		panelPrincipal.setBackground(new Color(0, 0, 0));
 		add(panelPrincipal, BorderLayout.CENTER);
 		GridBagLayout gbl_panelPrincipal = new GridBagLayout();
-		gbl_panelPrincipal.columnWidths = new int[] {210, 450, 0};
-		gbl_panelPrincipal.rowHeights = new int[] {440, 0};
+		gbl_panelPrincipal.columnWidths = new int[] {(int) (juego.getAncho()*0.45), (int) (juego.getAncho()*0.55), 0};
+		gbl_panelPrincipal.rowHeights = new int[] {(int) (juego.getAlto()*0.8), 0};
 		gbl_panelPrincipal.columnWeights = new double[]{1.0, 0.0, Double.MIN_VALUE};
 		gbl_panelPrincipal.rowWeights = new double[]{0.0, 1.0};
 		panelPrincipal.setLayout(gbl_panelPrincipal);
@@ -60,8 +60,9 @@ public class PantallaAbout extends JPanel{
 		panelPrincipal.add(panel, gbc_panel);
 		panel.setBackground(new Color(0, 0, 0));
 		GridBagLayout gbl_panel = new GridBagLayout();
-		gbl_panel.columnWidths = new int[]{460, 0};
-		gbl_panel.rowHeights = new int[] {55, 55, 55, 55, 55, 55, 55, 0};
+		gbl_panel.columnWidths = new int[]{(int) (juego.getAncho()*0.55), 0};
+		int row = (int) (juego.getAncho()*0.07);
+		gbl_panel.rowHeights = new int[] {row, row, row, row, row, row, row, 0};
 		gbl_panel.columnWeights = new double[]{0.0, Double.MIN_VALUE};
 		gbl_panel.rowWeights = new double[]{0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, Double.MIN_VALUE};
 		panel.setLayout(gbl_panel);

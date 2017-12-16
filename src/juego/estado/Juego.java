@@ -32,7 +32,6 @@ public class Juego extends Estado{
 	public Juego(Game juego) {
 		super(EstadoJuego.JUEGO);
 		this.juego=juego;
-		//maze = new Maze();
 		init();
 	}
 
@@ -40,14 +39,14 @@ public class Juego extends Estado{
 		Recursos.init();
 		pnlJuego=new PantallaJuego(juego);
 		juego.getVentana().getPnlVista().add(pnlJuego,"Juego");
-		
-		jugador=new Jugador(this,10,160, 3);
+		escenario = new Escenario(this);
+	    cells = escenario.getCells();
+		jugador=new Jugador(this,pnlJuego.getCanvas().getWidth()/2,pnlJuego.getCanvas().getHeight()/2, 3);
 		inky   = new Enemigo(ghostInitialRow, ghostInitialColumn, this, "inky.png");
 	    blinky = new Enemigo(ghostInitialRow + 3, ghostInitialColumn, this, "blinky.png");
         pinky  = new Enemigo(ghostInitialRow, ghostInitialColumn + 3, this, "pinky.png");
         clyde  = new Enemigo(ghostInitialRow + 3, ghostInitialColumn + 3, this, "clyde.png");
-        escenario = new Escenario(this);
-        cells = escenario.getCells();
+      
 	}
 
 	public void render(Graphics g) {
@@ -60,8 +59,8 @@ public class Juego extends Estado{
 		g=bs.getDrawGraphics();
 		g.clearRect(0, 0,juego.getAncho(), juego.getAlto());
 		// PINTAR ELEMENTOS
-		jugador.render(g);
 		escenario.render(g);
+		jugador.render(g);
 		inky.render(g);
 		blinky.render(g);
 		pinky.render(g);

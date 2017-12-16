@@ -1,16 +1,17 @@
 package juego.elementos;
 
 import java.awt.Color;
+import java.awt.Dimension;
 import java.awt.Graphics;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Scanner;
-
+import javax.swing.JPanel;
 import juego.Cell;
 import juego.estado.Juego;
 
-public class Escenario {
+public class Escenario extends JPanel{
 	
 	final static int CELL = 20;
 	private String map = "src/levels/level1.txt/";

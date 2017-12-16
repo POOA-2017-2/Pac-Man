@@ -26,8 +26,6 @@ public class Jugador {
 	public Cell[][] cells;
     public int livesLeft;
     public int score;
-   // public PacmanGUI pacmanGUI;
-
 	
 	public Jugador(Juego juego, int x, int y,int lives) {
 		super();
@@ -49,60 +47,55 @@ public class Jugador {
 		if(juego.getPnlJuego().getBm().isRight() || juego.getPnlJuego().getKm().isDerecha()) {
 			if(x<(juego.getJuego().getAncho()- 50)) 
 				if (isCellNavigable(y, x + dx)){
-				x+=dx;
-				jugadorL.stop();
-				jugadorU.stop();
-				jugadorD.stop();
-				jugadorR.start();
-			}//else
-			//jugadorR.stop();
+					x+=dx;
+					jugadorL.stop();
+					jugadorU.stop();
+					jugadorD.stop();
+					jugadorR.start();
+				}else {}
+			else
+			jugadorR.stop();
 			
 		}
 			
 		else if(juego.getPnlJuego().getBm().isLeft() || juego.getPnlJuego().getKm().isIzquierda()) {
 			if(x>0)
-				if (isCellNavigable(y, x - dx)){
+				if (isCellNavigable(x-dx,y)){
 				x-=dx;
 				jugadorU.stop();
 				jugadorR.stop();
 				jugadorD.stop();
 				jugadorL.start();
-			}else
+				}else {}
+			else
 			jugadorL.stop();
 			
 		}
 		else if(juego.getPnlJuego().getBm().isUp() || juego.getPnlJuego().getKm().isArriba()) {
 			if(y>0)
-				if (isCellNavigable(y-dy, x)){
+				if (isCellNavigable(x,y-dy)){
 				y-=dy;
 				jugadorL.stop();
 				jugadorR.stop();
 				jugadorD.stop();
 				jugadorU.start();
-			}else
+				}else {}
+			else
 			jugadorU.stop();
 		}
 		else if(juego.getPnlJuego().getBm().isDown() || juego.getPnlJuego().getKm().isAbajo()) {
 			if(y<(juego.getJuego().getAlto() - 200))
-				if (isCellNavigable(y+dy, x)){
+				if (isCellNavigable(x,y+dy)){
 				y+=dy;
 				jugadorL.stop();
 				jugadorU.stop();
 				jugadorR.stop();
 				jugadorD.start();
-			}else
-				jugadorD.stop();
+				}else {}
+			else
+			jugadorD.stop();
 		}
-	//	eatPellet(y, x);
-
-       
-	}
-	
-	public void stopAll() {
-		jugadorL.stop();
-		jugadorU.stop();
-		jugadorR.stop();
-		jugadorD.stop();
+		eatPellet(x, y);
 	}
 	
 	public void render(Graphics g) {
@@ -111,18 +104,18 @@ public class Jugador {
 	}
 	
 	public BufferedImage currentFrame() {
-		if(juego.getPnlJuego().getBm().isRight()) {
+		if(juego.getPnlJuego().getBm().isRight() || juego.getPnlJuego().getKm().isDerecha()) {
 			return jugadorR.currentFrame();
 		}
-		else if(juego.getPnlJuego().getBm().isLeft()) {
+		else if(juego.getPnlJuego().getBm().isLeft() || juego.getPnlJuego().getKm().isIzquierda()) {
 			return jugadorL.currentFrame();
 		}
-		else if(juego.getPnlJuego().getBm().isDown()){
+		else if(juego.getPnlJuego().getBm().isDown() || juego.getPnlJuego().getKm().isAbajo()){
 			return jugadorD.currentFrame();
 		}
-		else if(juego.getPnlJuego().getBm().isUp()) {
+		else if(juego.getPnlJuego().getBm().isUp() || juego.getPnlJuego().getKm().isArriba()) {
 			return jugadorU.currentFrame();
-		}
+		}else
 		return Recursos.jugador;
 	}
 	
@@ -142,13 +135,11 @@ public class Jugador {
 	        if (cells[column][row].getType() == 'd') {
 	            score  += 10;
 	            cells[column][row].type = 'o';
-	           // PacmanGUI.newDisp();
 	        }
 
 	        if (cells[column][row].getType() == 'p') {
 	            score += 50;
 	            cells[column][row].type = 'o';
-	         //   PacmanGUI.newDisp();
 	            juego.setEdible();
 	        }
 	    }
@@ -168,7 +159,6 @@ public class Jugador {
 	    public int getScore() {
 	        return score;
 	    }
-
 	    /*
 	     * vidas
 	     *

@@ -10,11 +10,9 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.awt.image.BufferStrategy;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.border.LineBorder;
-
 import juego.Display;
 import juego.Game;
 import juego.elementos.Jugador;
@@ -24,7 +22,6 @@ import juego.manager.KeyManager;
 import juego.manager.MiBoton;
 import juego.manager.Recursos;
 import juego.manager.StateManager;
-
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.BoxLayout;
@@ -113,6 +110,8 @@ public class PantallaJuego extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				int action = JOptionPane.showConfirmDialog(panelJuego, "Deseas dejar la partida?","FIN DE JUEGO",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
 				if(action == JOptionPane.YES_OPTION){
+					//Scores about = new Scores();
+					//about.setVisible(true);
 					StateManager.getInstance().setCurrentEstado(EstadoJuego.MENU);
 				}
 			}
