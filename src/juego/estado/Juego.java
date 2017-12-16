@@ -41,7 +41,7 @@ public class Juego extends Estado{
 		juego.getVentana().getPnlVista().add(pnlJuego,"Juego");
 		escenario = new Escenario(this);
 	    cells = escenario.getCells();
-		jugador=new Jugador(this,pnlJuego.getCanvas().getWidth()/2,pnlJuego.getCanvas().getHeight()/2, 3);
+		jugador=new Jugador(this,423,133, 3);
 		inky   = new Enemigo(ghostInitialRow, ghostInitialColumn, this, "inky.png");
 	    blinky = new Enemigo(ghostInitialRow + 3, ghostInitialColumn, this, "blinky.png");
         pinky  = new Enemigo(ghostInitialRow, ghostInitialColumn + 3, this, "pinky.png");
