@@ -42,29 +42,18 @@ public class Enemigo {
 
           // Movimiento
 		  cells = juego.getCells();
-          switch (randGen.nextInt(4) + 1) {
-          case (1) :
-              moveCol(1);
-          	moveRow(1);
-
-              break;
-
-          case (2) :
-              moveCol(-1);
-          	moveRow(-1);
-
-              break;
-
-          case (3) :
-              moveRow(1);
-          	moveCol(1);
-
-              break;
-
-          case (4) :
-            moveRow(0);
-          	moveCol(0);
-              break;
+          switch (randGen.nextInt(6) + 1) {
+          case (1) :	moveCol(1);
+         				break;
+          case (2) :	moveCol(-1);
+						break;
+          case (3) : 	moveRow(1);
+          				break;
+          case (4) : 	moveRow(-1);
+			            break;
+          default : 	moveRow(0);
+			        	moveCol(0);
+			        	break;
           }
 
          // maze.repaint();
