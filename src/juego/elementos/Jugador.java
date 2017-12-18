@@ -99,7 +99,7 @@ public class Jugador {
 	}
 	
 	public void render(Graphics g) {
-		g.drawImage(currentFrame(), x, y, null);
+		g.drawImage(currentFrame(), x*20, y*20, juego.getPnlJuego());
 	//	g.dispose();
 	}
 	

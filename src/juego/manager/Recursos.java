@@ -20,14 +20,14 @@ public class Recursos {
 		jugadorUp = new BufferedImage[4];
 		jugadorDown = new BufferedImage[4];
 		
-		jugadorLeft [0] = sm.subImagen(189, 298, 27, 27);
-		jugadorLeft [1] = sm.subImagen(216, 270, 27, 27);
-		jugadorLeft [2] = sm.subImagen(189, 298, 27, 27);
+		jugadorLeft [0] = sm.subImagen(185, 298, 27, 27);
+		jugadorLeft [1] = sm.subImagen(216, 271, 27, 27);
+		jugadorLeft [2] = sm.subImagen(185, 298, 27, 27);
 		jugadorLeft [3] = sm.subImagen(81, 81, 27, 27);
 		
-		jugadorRight [0] = sm.subImagen(0, 297, 27, 27);
-		jugadorRight [1] = sm.subImagen(27, 216, 27, 27);
-		jugadorRight [2] = sm.subImagen(0, 297, 27, 27);
+		jugadorRight [0] = sm.subImagen(0, 298, 27, 27);
+		jugadorRight [1] = sm.subImagen(27, 217, 27, 27);
+		jugadorRight [2] = sm.subImagen(0, 298, 27, 27);
 		jugadorRight [3] = sm.subImagen(81, 81, 27, 27);
 		
 		jugadorUp [0] = sm.subImagen(27, 189, 27, 27);
