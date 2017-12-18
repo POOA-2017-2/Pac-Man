@@ -11,7 +11,9 @@ import juego.elementos.Escenario;
 import juego.elementos.Jugador;
 import juego.elementos.Maze;
 import juego.manager.Recursos;
+import juego.manager.StateManager;
 import juego.paneles.PantallaJuego;
+import juego.paneles.Perdedor;
 
 public class Juego extends Estado{
 
@@ -27,7 +29,7 @@ public class Juego extends Estado{
 	private Enemigo blinky;
 	private Enemigo pinky;
 	private Enemigo clyde;
-	private int lives;
+	private int lives = 3;
 	
 	public Juego(Game juego) {
 		super(EstadoJuego.JUEGO);
@@ -41,7 +43,7 @@ public class Juego extends Estado{
 		juego.getVentana().getPnlVista().add(pnlJuego,"Juego");
 		escenario = new Escenario(this);
 	    cells = escenario.getCells();
-		jugador=new Jugador(this,21,7, 3);
+		jugador=new Jugador(this,21,7, lives);
 		inky   = new Enemigo(ghostInitialRow, ghostInitialColumn, this, "inky.png");
 	    blinky = new Enemigo(ghostInitialRow + 3, ghostInitialColumn, this, "blinky.png");
         pinky  = new Enemigo(ghostInitialRow, ghostInitialColumn + 3, this, "pinky.png");
@@ -113,32 +115,30 @@ public class Juego extends Estado{
 
 	    public void checkCollision() {
 	        if (pinky.isDeadly() && (pinky.getCol() == jugador.getY()) && (pinky.getRow() == jugador.getX())) {
-	            System.out.println("Pacman eaten by Pinky!");
 	            loseLife();
 	        } else if (inky.isDeadly() && (inky.getCol() == jugador.getY()) && (inky.getRow() == jugador.getX())) {
-	            System.out.println("Pacman eaten by Inky!");
 	            loseLife();
 	        } else if (blinky.isDeadly() && (blinky.getCol() == jugador.getY()) && (blinky.getRow() == jugador.getX())) {
-	            System.out.println("Pacman eaten by Blinky!");
 	            loseLife();
 	        } else if (clyde.isDeadly() && (clyde.getCol() == jugador.getY()) && (clyde.getRow() == jugador.getX())) {
-	            System.out.println("Pacman eaten by Clyde!");
 	            loseLife();
 	        }
 	    }
 
 	    public void loseLife() {
 	        lives--;
-	       // PacmanGUI.newDisp();    // actualizar vidas
-
-	        //integrar animacion muerte
 	        if (lives <= 0) {
-	        /*	inky.endgame();
-	            blinky.endgame();
-	            pinky.endgame();
-	            clyde.endgame();
-	            pacman.endgame();*/
-	            System.out.println("Game Over!");
+	        	Perdedor perdio = new Perdedor();
+	        	perdio.setVisible(true);
+	        	perdio.setAlwaysOnTop(true);
+	        	StateManager.getInstance().setCurrentEstado(EstadoJuego.MENU);
+				//int score = juego.getScore();
+				/* Aqui tomar el score guardado, si es que hay uno
+				 * y compararlo con el score obtenido
+				 * Si es mayor entonces 
+				 * 	//Scores about = new Scores();
+					//about.setVisible(true);
+				 */
 	        }
 	    }
 	public void exit() {

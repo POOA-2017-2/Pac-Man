@@ -16,7 +16,7 @@ public class Animacion {
 	public Animacion(int speed, BufferedImage[] frames) {
 		this.speed = speed;
 		this.frames = frames;
-		index = 0;
+		index = 0; 
 		temporizador = new Timer (speed,new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				update();

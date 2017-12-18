@@ -9,7 +9,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 import javax.swing.JPanel;
 import juego.Cell;
+import juego.estado.EstadoJuego;
 import juego.estado.Juego;
+import juego.manager.StateManager;
+import juego.paneles.Ganador;
 
 public class Escenario extends JPanel{
 	
@@ -19,6 +22,7 @@ public class Escenario extends JPanel{
     private int	tileWidth;
     private Cell[][] cells;
     private Juego juego;
+	private Ganador gano;
 	
 	public Cell[][] getCells() {
 		return cells;
@@ -93,6 +97,34 @@ public class Escenario extends JPanel{
 	                cells[row][column].drawBackground(g);
 	            }
 	        }
+	 }
+	 
+	 public void update() {
+		 int count = 0;
+		 for (int row = 0; row < tileHeight; row++) {
+			 // corrimiento atraves de cada columna del arreglo
+	            for (int column = 0; column < tileWidth; column++) {
+	               if (cells[column][row].getType() == 'd' || cells[column][row].getType() == 'p')
+	            	   count ++;
+	            }
+	        }
+		 if (count == 0) {
+			 StateManager.getInstance().setCurrentEstado(EstadoJuego.MENU);
+			gano = new Ganador();
+			gano.setVisible(true);
+			gano.setAlwaysOnTop(true);
+			//int score = juego.getScore();
+			/* Aqui tomar el score guardado, si es que hay uno
+			 * y compararlo con el score obtenido
+			 * Si es mayor entonces 
+			 * 	//Scores about = new Scores();
+				//about.setVisible(true);
+				//about.setAlwaysOnTop(true);
+				
+			 */
+		 }
+			
+			 
 	 }
 
 	

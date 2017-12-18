@@ -110,8 +110,6 @@ public class PantallaJuego extends JPanel{
 			public void actionPerformed(ActionEvent arg0) {
 				int action = JOptionPane.showConfirmDialog(panelJuego, "Deseas dejar la partida?","FIN DE JUEGO",JOptionPane.YES_NO_OPTION,JOptionPane.WARNING_MESSAGE);
 				if(action == JOptionPane.YES_OPTION){
-					//Scores about = new Scores();
-					//about.setVisible(true);
 					StateManager.getInstance().setCurrentEstado(EstadoJuego.MENU);
 				}
 			}

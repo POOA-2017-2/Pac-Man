@@ -18,6 +18,8 @@ public class Game implements Runnable{
 	private String titulo;
 	private boolean activo;
 	private Thread t;
+	
+
 	private Graphics g;
 
 	public Game(int ancho, int alto, String titulo) {
@@ -72,6 +74,9 @@ public class Game implements Runnable{
 	public void render(){
 		if(StateManager.getInstance()!=null)
 			StateManager.getInstance().getCurrentEstado().render(g);
+	}
+	public Thread getT() {
+		return t;
 	}
 	
 	public void run() {
@@ -139,6 +144,10 @@ public class Game implements Runnable{
 
 	public Display getVentana() {
 		return ventana;
+	}
+
+	public void setActivo(boolean activo) {
+		this.activo = activo;
 	}
 	
 	

@@ -34,7 +34,6 @@ public class Enemigo {
 	public void update() {
 		  if (this.deadly == false) {
               this.edibleLifeRemaining--;
-
               if (this.edibleLifeRemaining <= 0) {
                   this.deadly = true;
               }

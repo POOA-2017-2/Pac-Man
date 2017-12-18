@@ -8,7 +8,9 @@ import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import juego.estado.EstadoJuego;
 import juego.manager.MiBoton;
+import juego.manager.StateManager;
 
 import javax.swing.JTextField;
 import java.awt.GridLayout;
@@ -94,6 +96,12 @@ public class Scores extends JDialog {
 			getContentPane().add(buttonPane, BorderLayout.SOUTH);
 			{
 				MiBoton okButton = new MiBoton("OK", Color.blue);
+				okButton.addActionListener(new ActionListener() {
+					public void actionPerformed(ActionEvent e) {
+						//Aqui se guardan el score y el nombre del jugador
+						StateManager.getInstance().setCurrentEstado(EstadoJuego.MENU);
+					}
+				});
 				okButton.setActionCommand("OK");
 				buttonPane.add(okButton);
 				getRootPane().setDefaultButton(okButton);

@@ -8,6 +8,7 @@ import java.awt.image.BufferedImage;
 import juego.Cell;
 import juego.estado.Juego;
 import juego.manager.Animacion;
+import juego.manager.AudioManager;
 import juego.manager.Recursos;
 import juego.paneles.PantallaJuego;
 
@@ -26,6 +27,7 @@ public class Jugador {
 	public Cell[][] cells;
     public int livesLeft;
     public int score;
+    public AudioManager manager;
 	
 	public Jugador(Juego juego, int x, int y,int lives) {
 		super();
@@ -35,15 +37,16 @@ public class Jugador {
 		dx = 1;
 		dy = 1;
 		imagen = Recursos.jugador;
-		jugadorL = new Animacion(250,Recursos.jugadorLeft);
-		jugadorR = new Animacion(250,Recursos.jugadorRight);
-		jugadorU = new Animacion(250,Recursos.jugadorUp);
-		jugadorD = new Animacion(250,Recursos.jugadorDown);
+		jugadorL = new Animacion(100,Recursos.jugadorLeft);
+		jugadorR = new Animacion(100,Recursos.jugadorRight);
+		jugadorU = new Animacion(100,Recursos.jugadorUp);
+		jugadorD = new Animacion(100,Recursos.jugadorDown);
         livesLeft = lives;
         cells     = juego.getCells();
 	}
 	
 	public void update() {
+		manager=new AudioManager("/sounds/pacman_chomp.wav");
 		if(juego.getPnlJuego().getBm().isRight() || juego.getPnlJuego().getKm().isDerecha()) {
 			if(x<(juego.getJuego().getAncho()- 50)) 
 				if (isCellNavigable(y, x + dx)){
@@ -60,7 +63,7 @@ public class Jugador {
 			
 		else if(juego.getPnlJuego().getBm().isLeft() || juego.getPnlJuego().getKm().isIzquierda()) {
 			if(x>0)
-				if (isCellNavigable(x-dx,y)){
+				if (isCellNavigable(y,x-dx)){
 				x-=dx;
 				jugadorU.stop();
 				jugadorR.stop();
@@ -73,7 +76,7 @@ public class Jugador {
 		}
 		else if(juego.getPnlJuego().getBm().isUp() || juego.getPnlJuego().getKm().isArriba()) {
 			if(y>0)
-				if (isCellNavigable(x,y-dy)){
+				if (isCellNavigable(y-dy,x)){
 				y-=dy;
 				jugadorL.stop();
 				jugadorR.stop();
@@ -85,7 +88,7 @@ public class Jugador {
 		}
 		else if(juego.getPnlJuego().getBm().isDown() || juego.getPnlJuego().getKm().isAbajo()) {
 			if(y<(juego.getJuego().getAlto() - 200))
-				if (isCellNavigable(x,y+dy)){
+				if (isCellNavigable(y+dy,x)){
 				y+=dy;
 				jugadorL.stop();
 				jugadorU.stop();
@@ -95,7 +98,7 @@ public class Jugador {
 			else
 			jugadorD.stop();
 		}
-	//	eatPellet(x, y);
+		eatPellet(y, x);
 	}
 	
 	public void render(Graphics g) {
@@ -132,9 +135,11 @@ public class Jugador {
 
 
 	    public void eatPellet(int column, int row) {
+	    	
 	        if (cells[column][row].getType() == 'd') {
 	            score  += 10;
 	            cells[column][row].type = 'o';
+	            manager.start();
 	        }
 
 	        if (cells[column][row].getType() == 'p') {
