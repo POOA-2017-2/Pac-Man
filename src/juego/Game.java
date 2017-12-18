@@ -77,7 +77,7 @@ public class Game implements Runnable{
 	public void run() {
 		
 		init();//<--- INICIALIZAR JUEGO
-		int fps=60;
+		int fps=5;
 		double nanoPorFrame=1000000000/fps;
 		long nuevo;
 		long pasado=System.nanoTime();

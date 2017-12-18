@@ -44,8 +44,8 @@ public class Enemigo {
 		  cells = juego.getCells();
           switch (randGen.nextInt(4) + 1) {
           case (1) :
-              moveCol(0);
-          	moveRow(0);
+              moveCol(1);
+          	moveRow(1);
 
               break;
 
@@ -62,8 +62,8 @@ public class Enemigo {
               break;
 
           case (4) :
-            moveRow(2);
-          	moveCol(2);
+            moveRow(0);
+          	moveCol(0);
               break;
           }
 
