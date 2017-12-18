@@ -95,7 +95,7 @@ public class Jugador {
 			else
 			jugadorD.stop();
 		}
-		eatPellet(x, y);
+	//	eatPellet(x, y);
 	}
 	
 	public void render(Graphics g) {

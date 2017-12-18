@@ -11,7 +11,7 @@ import juego.estado.Juego;
 public class Enemigo {
 
 	
-	    private static final String IMAGE_SOURCE        = "/src/Imagenes";
+	    private static final String IMAGE_SOURCE        = "src/Imagenes/";
 	    int                         edibleLifetime      = 10;
 	    boolean                     isRunning           = true;
 	    Random                      randGen             = new Random();
