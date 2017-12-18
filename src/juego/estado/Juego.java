@@ -14,6 +14,7 @@ import juego.manager.Recursos;
 import juego.manager.StateManager;
 import juego.paneles.PantallaJuego;
 import juego.paneles.Perdedor;
+import juego.paneles.Scores;
 
 public class Juego extends Estado{
 
@@ -132,13 +133,14 @@ public class Juego extends Estado{
 	        	perdio.setVisible(true);
 	        	perdio.setAlwaysOnTop(true);
 	        	StateManager.getInstance().setCurrentEstado(EstadoJuego.MENU);
-				//int score = juego.getScore();
-				/* Aqui tomar el score guardado, si es que hay uno
-				 * y compararlo con el score obtenido
-				 * Si es mayor entonces 
-				 * 	//Scores about = new Scores();
-					//about.setVisible(true);
-				 */
+				int score = jugador.getScore();
+	        	int scoreGuardado = getJuego().getPuntuacion();
+	        	if(score>scoreGuardado) {
+	        		Scores about = new Scores();
+					about.setVisible(true);
+	        	}
+				 	
+				 
 	        }
 	    }
 	public void exit() {

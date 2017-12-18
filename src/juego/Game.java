@@ -18,6 +18,7 @@ public class Game implements Runnable{
 	private String titulo;
 	private boolean activo;
 	private Thread t;
+	private int puntuacion;
 	
 
 	private Graphics g;
@@ -77,6 +78,13 @@ public class Game implements Runnable{
 	}
 	public Thread getT() {
 		return t;
+	}
+	
+	public int getPuntuacion() {
+		
+		//FUNCION PARA RECUPERAR LA PUNTUACION MAS ALTA DEL ARCHIVO DE TEXTO, 
+		//SI NO HAY NADA AUN REGRESAR 0
+		return 0; 
 	}
 	
 	public void run() {

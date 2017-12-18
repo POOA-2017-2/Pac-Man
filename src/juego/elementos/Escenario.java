@@ -13,6 +13,7 @@ import juego.estado.EstadoJuego;
 import juego.estado.Juego;
 import juego.manager.StateManager;
 import juego.paneles.Ganador;
+import juego.paneles.Scores;
 
 public class Escenario extends JPanel{
 	
@@ -113,15 +114,14 @@ public class Escenario extends JPanel{
 			gano = new Ganador();
 			gano.setVisible(true);
 			gano.setAlwaysOnTop(true);
-			//int score = juego.getScore();
-			/* Aqui tomar el score guardado, si es que hay uno
-			 * y compararlo con el score obtenido
-			 * Si es mayor entonces 
-			 * 	//Scores about = new Scores();
-				//about.setVisible(true);
-				//about.setAlwaysOnTop(true);
+			int score = juego.getJugador().getScore();
+        	int scoreGuardado = juego.getJuego().getPuntuacion();
+        	if(score>scoreGuardado) {
+        		Scores about = new Scores();
+				about.setVisible(true);
+				about.setAlwaysOnTop(true);
 				
-			 */
+        	}
 		 }
 			
 			 
